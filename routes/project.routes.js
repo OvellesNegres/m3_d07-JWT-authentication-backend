@@ -6,7 +6,7 @@ const Project = require("../models/Project.model");
 const Task = require("../models/Task.model");
 
 //  POST /api/projects  -  Creates a new project
-router.post("/projects", (req, res, next) => {
+router.post("/", (req, res, next) => {
   const { title, description } = req.body;
 
   Project.create({ title, description, tasks: [] })
@@ -15,7 +15,7 @@ router.post("/projects", (req, res, next) => {
 });
 
 //  GET /api/projects -  Retrieves all of the projects
-router.get("/projects", (req, res, next) => {
+router.get("/", (req, res, next) => {
   Project.find()
     .populate("tasks")
     .then((allProjects) => res.json(allProjects))
@@ -23,7 +23,7 @@ router.get("/projects", (req, res, next) => {
 });
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
-router.get("/projects/:projectId", (req, res, next) => {
+router.get("/:projectId", (req, res, next) => {
   const { projectId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
@@ -40,7 +40,7 @@ router.get("/projects/:projectId", (req, res, next) => {
 });
 
 // PUT  /api/projects/:projectId  -  Updates a specific project by id
-router.put("/projects/:projectId", (req, res, next) => {
+router.put("/:projectId", (req, res, next) => {
   const { projectId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {
@@ -54,7 +54,7 @@ router.put("/projects/:projectId", (req, res, next) => {
 });
 
 // DELETE  /api/projects/:projectId  -  Deletes a specific project by id
-router.delete("/projects/:projectId", (req, res, next) => {
+router.delete("/:projectId", (req, res, next) => {
   const { projectId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(projectId)) {

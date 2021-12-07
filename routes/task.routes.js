@@ -6,7 +6,7 @@ const Task = require("../models/Task.model");
 const Project = require("../models/Project.model");
 
 //  POST /api/tasks  -  Creates a new task
-router.post("/tasks", (req, res, next) => {
+router.post("/", (req, res, next) => {
   const { title, description, projectId } = req.body;
 
   Task.create({ title, description, project: projectId })
@@ -20,7 +20,7 @@ router.post("/tasks", (req, res, next) => {
 });
 
 //  GET /api/tasks/:taskId  - Retrieves a specific task by id
-router.get("/tasks/:taskId", (req, res, next) => {
+router.get("/:taskId", (req, res, next) => {
   const { taskId } = req.params;
 
   Task.findById(taskId)
@@ -29,7 +29,7 @@ router.get("/tasks/:taskId", (req, res, next) => {
 });
 
 // PUT  /api/tasks/:taskId  - Updates a specific task by id
-router.put("/tasks/:taskId", (req, res, next) => {
+router.put("/:taskId", (req, res, next) => {
   const { taskId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(taskId)) {
@@ -43,7 +43,7 @@ router.put("/tasks/:taskId", (req, res, next) => {
 });
 
 //  DELETE /api/tasks/:taskId  - Deletes a specific task by id
-router.delete("/tasks/:taskId", (req, res, next) => {
+router.delete("/:taskId", (req, res, next) => {
   const { taskId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(taskId)) {
