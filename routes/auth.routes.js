@@ -37,7 +37,7 @@ router.post("/login", (req, res)=>{
 })
 
 
-router.get("/verify", isAuthenticated, (req, res)=>{
+router.get("/verify", (req, res)=>{
     // we could decrypt by hand the JWT here and NOT use the middleware,
     // but it's cleaner to have one common middleware throuout the backend to handle JWT
     // so the decryption function neds up also here as middleware
@@ -105,4 +105,4 @@ router.post('/signup', (req, res, next) => {
       });
   });
   
-  
+  module.exports = router
